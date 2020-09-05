@@ -1,6 +1,8 @@
 import os
 import re
+import atexit
 from flask import Flask, request, redirect, render_template, send_from_directory
+from apscheduler.schedulers.background import BackgroundScheduler
 from werkzeug.utils import secure_filename
 from server_utils.file_helper import init_folders, is_valid_file, get_path, upload_file, proccess_file, download_file, delete_old_files
 
@@ -48,3 +50,7 @@ def send_static(path):
 if __name__ == "__main__":
     init_folders()
     app.run()
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(func=delete_old_files, args=(300), trigger="interval", seconds=300, max_instances=1)
+    scheduler.start()
+    atexit.register(lambda: scheduler.shutdown())

@@ -17,7 +17,6 @@ def get_path(filename, upload=True):
 
 def upload_file(file, filename, get_path):
     file.save(get_path(filename))
-    delete_old_files(300)
 
 def proccess_file(filename, get_path):
     copyfile(get_path(filename), get_path(filename, False))
