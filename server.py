@@ -1,38 +1,15 @@
 import os
 import re
-from shutil import copyfile
 from flask import Flask, request, redirect, render_template, send_from_directory
 from werkzeug.utils import secure_filename
+from server_utils.file_helper import init_folders, is_valid_file, get_path, upload_file, proccess_file, download_file, delete_old_files
 
 app = Flask(__name__,
     template_folder='build',
     static_folder='build/static',
     static_url_path='/build/static'
 )
-
-app.config["UPLOAD_FOLDER"] = os.path.dirname(os.getcwd()+ "/image_uploads/")
-app.config["DOWNLOAD_FOLDER"] = os.path.dirname(os.getcwd() + "/image_downloads/")
-
-def get_path(filename, upload=True):
-    if upload:
-        return os.path.join(app.config["UPLOAD_FOLDER"], filename)
-    return os.path.join(app.config["DOWNLOAD_FOLDER"], filename)
-
-# Helper Functions
-file_pattern = re.compile("^[\w\-. ]+.(png|jpe?g|tiff)$", re.IGNORECASE)
-def is_valid_file(filename):
-    return file_pattern.match(filename)
-
-def upload_file(file, filename):
-    file.save(get_path(filename))
-
-def proccess_file(filename):
-    copyfile(get_path(filename), get_path(filename, False))
-    # TODO: IMPLEMENT OPENCV
-    os.remove(get_path(filename))
-
-def download_file(filename):
-    return send_from_directory(app.config["DOWNLOAD_FOLDER"], filename, as_attachment=True)
+app.config.from_pyfile('server_config.py')
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -48,8 +25,8 @@ def index():
         
         if file and is_valid_file(filename):
             filename = secure_filename(filename)
-            upload_file(file, filename)
-            proccess_file(filename)
+            upload_file(file, filename, get_path)
+            proccess_file(filename, get_path)
             return download_file(filename)
 
     return render_template('index.html')
@@ -69,4 +46,5 @@ def send_static(path):
 
 # Main
 if __name__ == "__main__":
-    app.run(debug=True)
+    init_folders()
+    app.run()
