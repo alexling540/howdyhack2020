@@ -16,40 +16,32 @@ export default function About() {
       <Paragraphs />
 
       <div className='cards'>
-        <h1>Check out these EPIC Destinations!</h1>
+        <h1>Meet the Team</h1>
         <div className='cards__container'>
           <div className='cards__wrapper'>
             <ul className='cards__items'>
               <CardItem
-                src='images/img-9.jpg'
-                text='Explore the hidden waterfall deep inside the Amazon Jungle'
-                label='Adventure'
-                path='/services'
+                src='images/dan.jpg'
+                text='Daniel Chamorro'
+                label='Front-End'
+                path='/'
               />
               <CardItem
-                src='images/img-2.jpg'
-                text='Travel through the Islands of Bali in a Private Cruise'
-                label='Luxury'
-                path='/services'
-              />
-            </ul>
-            <ul className='cards__items'>
-              <CardItem
-                src='images/img-9.jpg'
-                text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
-                label='Mystery'
+                src='images/bryce.jpg'
+                text='Bryce Bodner'
+                label='Python'
                 path='/services'
               />
               <CardItem
                 src='images/img-9.jpg'
-                text='Experience Football on Top of the Himilayan Mountains'
-                label='Adventure'
+                text='Alex Ling' 
+                label='Back-end'
                 path='/products'
               />
               <CardItem
-                src='images/img-9.jpg'
-                text='Ride through the Sahara Desert on a guided camel tour'
-                label='Adrenaline'
+                src='images/apsara.jpg'
+                text='Apsara Mitra'
+                label='Front-end'
                 path='/sign-up'
               />
             </ul>
