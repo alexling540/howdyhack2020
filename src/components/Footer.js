@@ -32,8 +32,25 @@ function Footer() {
           <div class='footer-link-items'>
             {/*add teams linked in links here*/}
             <h2>About Us</h2>
-            <Link to='/sign-up'>How it works</Link>
-            <Link to='/'>Careers</Link>
+            <a href='https://www.linkedin.com/in/daniel-chamorro-847618199/' target='_blank'
+              rel='noopener'>
+                Daniel Chamorro
+            </a>
+
+            <a href='https://www.linkedin.com/in/bryce-bodner-2767171b5/' target='_blank'
+              rel='noopener'>
+                Bryce Bodner
+            </a>
+
+            <a href='https://www.linkedin.com/in/alexander-ling-6b8a28178/' target='_blank'
+              rel='noopener'>
+                Alex Ling
+            </a>
+
+            <a href='https://www.linkedin.com/in/apsaramitra' target='_blank'
+              rel='noopener'>
+                Apsara Mitra
+            </a>
 
           </div>
           <div class='footer-link-items'>
@@ -56,14 +73,15 @@ function Footer() {
           <small class='website-rights'>Spy Tools © 2020</small>
           <div class='social-icons'>
 
-            <Link
+            <a
               class='social-icon-link github'
-              to='/'
+              to='https://github.com/alexling540/howdyhack2020'
               target='_blank'
               aria-label='Github'
             >
               <i class='fab fa-github' />
-            </Link>
+            </a>
+            
             <a
               class='social-icon-link twitter'
               href='https://www.linkedin.com/in/daniel-chamorro-847618199/'

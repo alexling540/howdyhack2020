@@ -27,6 +27,9 @@
 .btn--medium{
     padding: 8px 20px;
     font-size: 20px;
+    background: #5C7090;
+    color: white;
+    border-radius: 25px;
 }
 
 .btn--large{
@@ -39,4 +42,5 @@
     background: white;
     color: #242424;
     transition: all 0.3s ease-out;
+    
 }
