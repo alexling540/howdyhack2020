@@ -6,16 +6,19 @@ export default function face_rec() {
 
   return (
     <>
-    <h1 className='face_rec'>FACIAL RECOGNITION</h1>;
+      <h1 >FACIAL RECOGNITION</h1>;
 
-    <form method = 'post' enctype='multipart/form-data'>
-      <p>
-        <input type='file' name='file'/>
-        <input type='submit' value='Upload'/>
-      </p>
-    </form>
+      <div className='par__container'>
+        <form method='post' enctype='multipart/form-data'>
+          <p>
+            <input type='file' class = 'btn--medium' name='file' />
+            <br/>
+            <br/>
+            <input type='submit' class = 'btn--medium' value='Upload' />
 
-
+          </p>
+        </form>
+      </div>
       <Footer />
     </>
   );
