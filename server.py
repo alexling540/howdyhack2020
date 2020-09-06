@@ -87,6 +87,6 @@ if __name__ == "__main__":
     init_folders()
     app.run()
     scheduler = BackgroundScheduler()
-    scheduler.add_job(func=delete_old_files, trigger="interval", seconds=300, max_instances=1)
+    scheduler.add_job(func=delete_old_files, trigger="interval", seconds=300)
     scheduler.start()
     atexit.register(lambda: scheduler.shutdown())
