@@ -13,11 +13,15 @@ app = Flask(__name__,
 )
 app.config.from_pyfile('server_config.py')
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def index():
     return render_template('index.html')
 
-@app.route("/face_rec", methods=["GET, POST"])
+@app.route("/about")
+def about():
+    return render_template('index.html')
+
+@app.route("/face_rec", methods=["POST"])
 def face_rec():
     if request.method == "POST":
         if "file" not in request.files:
@@ -37,7 +41,7 @@ def face_rec():
             
     return render_template('index.html')
 
-@app.route("/disguise", methods=["GET", "POST"])
+@app.route("/disguise", methods=["POST"])
 def diguise():
     if request.method == "POST":
         if "file" not in request.files:
@@ -52,7 +56,7 @@ def diguise():
         if file and is_valid_file(filename):
             filename = secure_filename(filename)
             upload_file(file, filename)
-            proccess_file_disguise(filename, style="regular")
+            proccess_file_disguise(filename, style=request.form['option'])
             return download_file(filename)
             
     return render_template('index.html')
