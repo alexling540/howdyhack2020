@@ -21,8 +21,9 @@ def get_path(filename, upload=True):
 
 
 def upload_file(file, filename):
-    file.save(get_path(filename))
+    print(os.getcwd())
     print(get_path(filename))
+    file.save(get_path(filename))
 
 
 def proccess_file_face(filename):
