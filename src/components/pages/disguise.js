@@ -13,15 +13,15 @@ export default function face_rec() {
           <p>
             <input type='file' class='btn--medium' name='file'/>
             <br />
-            <input type="radio" id="choice1" name="option" value="regular" />
+            <input type="radio" id="choice1" name="option" value="regular" checked />
             <label for="choice1">
               Regular Glasses
-        </label>
+            </label>
             <br />
             <input type="radio" id="choice2" name="option" value="deal" />
             <label for="choice2">
               "Deal with it" Sunglasses
-        </label>
+            </label>
             <br />
             <br />
             <input type='submit' class='btn--medium' value='Upload' />
