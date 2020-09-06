@@ -21,7 +21,7 @@ def index():
 def about():
     return render_template('index.html')
 
-@app.route("/face_rec", methods=["POST"])
+@app.route("/face_rec", methods=["GET", "POST"])
 def face_rec():
     if request.method == "POST":
         if "file" not in request.files:
@@ -64,7 +64,7 @@ def diguise():
 # Build files from React
 @app.route("/<path:path>")
 def send_static(path):
-    return send_from_directory('build', path)
+    return send_from_directory('build/', path)
 
 @app.route("/images/<path:path>")
 def send_image(path):
@@ -82,11 +82,13 @@ def send_static_js(path):
 def send_static_css(path):
     return send_from_directory('build/static/css', path)
 
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=delete_old_files, trigger="interval", seconds=120)
+scheduler.start()
+atexit.register(lambda: scheduler.shutdown())
+
 # Main
 if __name__ == "__main__":
     init_folders()
     app.run()
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(func=delete_old_files, trigger="interval", seconds=300, max_instances=1)
-    scheduler.start()
-    atexit.register(lambda: scheduler.shutdown())

@@ -1,8 +1,9 @@
 # ------------------------------------
 # Project
 # ------------------------------------
-image_downloads/
-image_uploads/
+image_downloads/*
+image_uploads/*
+!.gitkeep
 
 # ------------------------------------
 # Python
