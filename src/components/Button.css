@@ -25,11 +25,17 @@
 }
 
 .btn--medium{
-    padding: 8px 20px;
+    display: flex;
+    flex-flow: column;
+    padding: 8px 7px;
     font-size: 20px;
+    text-align:center;
+    align-items: center;
     background: #5C7090;
     color: white;
-    border-radius: 25px;
+    border-radius: 20px;
+    margin-right: 10px;
+    
 }
 
 .btn--large{

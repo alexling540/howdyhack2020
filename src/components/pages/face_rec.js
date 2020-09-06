@@ -7,7 +7,7 @@ export default function face_rec() {
   return (
     <>
       <h1 >FACIAL RECOGNITION</h1>;
-
+      
       <div className='par__container'>
         <form method='post' enctype='multipart/form-data'>
           <p>
@@ -19,6 +19,9 @@ export default function face_rec() {
           </p>
         </form>
       </div>
+
+      
+      
       <Footer />
     </>
   );
