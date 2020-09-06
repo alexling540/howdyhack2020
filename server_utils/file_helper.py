@@ -15,10 +15,10 @@ def get_path(filename, upload=True):
         return os.path.join(UPLOAD_FOLDER, filename)
     return os.path.join(DOWNLOAD_FOLDER, filename)
 
-def upload_file(file, filename, get_path):
+def upload_file(file, filename):
     file.save(get_path(filename))
 
-def proccess_file(filename, get_path):
+def proccess_file(filename):
     copyfile(get_path(filename), get_path(filename, False))
     # TODO: IMPLEMENT OPENCV
     os.remove(get_path(filename))
@@ -32,9 +32,9 @@ def init_folders():
     if not os.path.exists(DOWNLOAD_FOLDER):
         os.makedirs(DOWNLOAD_FOLDER)
 
-def delete_old_files(threshold):
+def delete_old_files():
     now = time.time()
     for file in os.listdir(DOWNLOAD_FOLDER):
         full_path = get_path(file, False)
-        if now - os.path.getmtime(full_path) >= threshold:
+        if now - os.path.getmtime(full_path) >= 300:
             os.remove(full_path)

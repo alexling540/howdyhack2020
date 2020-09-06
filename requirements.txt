@@ -1,2 +1,4 @@
 Flask
 APScheduler
+numpy
+opencv-python
