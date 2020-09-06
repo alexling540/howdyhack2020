@@ -64,7 +64,7 @@ def diguise():
 # Build files from React
 @app.route("/<path:path>")
 def send_static(path):
-    return send_from_directory('build', path)
+    return send_from_directory('build/', path)
 
 @app.route("/images/<path:path>")
 def send_image(path):
