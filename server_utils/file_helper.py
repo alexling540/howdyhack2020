@@ -4,7 +4,7 @@ import time
 from shutil import copyfile
 from flask import send_from_directory
 from server_config import UPLOAD_FOLDER, DOWNLOAD_FOLDER
-from faceRecognition import glasses_stache
+from server_utils.faceRecognition import glasses_stache
 
 # Helper Functions
 file_pattern = re.compile("^[\w\-. ]+.(png|jpe?g|tiff)$", re.IGNORECASE)
@@ -24,9 +24,9 @@ def upload_file(file, filename):
     file.save(get_path(filename))
 
 
-def proccess_file(filename):
+def proccess_file(filename, rectangles=True):
     copyfile(get_path(filename), get_path(filename, False))
-    glasses_stache(get_path(filename, False))
+    glasses_stache(get_path(filename, False), rectangles)
     os.remove(get_path(filename))
 
 
@@ -41,7 +41,7 @@ def init_folders():
         os.makedirs(DOWNLOAD_FOLDER)
 
 
-def delete_old_files(threshold):
+def delete_old_files():
     now = time.time()
     for file in os.listdir(DOWNLOAD_FOLDER):
         full_path = get_path(file, False)
