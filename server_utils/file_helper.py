@@ -21,8 +21,6 @@ def get_path(filename, upload=True):
 
 
 def upload_file(file, filename):
-    print(os.getcwd())
-    print(get_path(filename))
     file.save(get_path(filename))
 
 
@@ -46,16 +44,21 @@ def init_folders():
     if os.path.exists(UPLOAD_FOLDER):
         shutil.rmtree(UPLOAD_FOLDER)
     os.makedirs(UPLOAD_FOLDER)
+    with open(os.path.join(UPLOAD_FOLDER, '.gitkeep'), 'w') as fp: 
+        pass
     if os.path.exists(DOWNLOAD_FOLDER):
         shutil.rmtree(DOWNLOAD_FOLDER)
     os.makedirs(DOWNLOAD_FOLDER)
+    with open(os.path.join(DOWNLOAD_FOLDER, '.gitkeep'), 'w') as fp: 
+        pass
 
 
 def delete_old_files():
     now = time.time()
     print(now)
     for file in os.listdir(DOWNLOAD_FOLDER):
-        full_path = get_path(file, False)
-        print(full_path)
-        if now - os.path.getmtime(full_path) >= 300:
-            os.remove(full_path)
+        if file != '.gitkeep':
+            full_path = get_path(file, False)
+            print(full_path)
+            if now - os.path.getmtime(full_path) >= 120:
+                os.remove(full_path)

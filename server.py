@@ -82,11 +82,13 @@ def send_static_js(path):
 def send_static_css(path):
     return send_from_directory('build/static/css', path)
 
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=delete_old_files, trigger="interval", seconds=120)
+scheduler.start()
+atexit.register(lambda: scheduler.shutdown())
+
 # Main
 if __name__ == "__main__":
     init_folders()
     app.run()
-    scheduler = BackgroundScheduler()
-    scheduler.start()
-    scheduler.add_job(func=delete_old_files, trigger="interval", seconds=5)
-    atexit.register(lambda: scheduler.shutdown())
