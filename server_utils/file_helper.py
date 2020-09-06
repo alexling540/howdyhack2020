@@ -1,7 +1,7 @@
 import os
 import re
 import time
-from shutil import copyfile
+import shutil
 from flask import send_from_directory
 from server_config import UPLOAD_FOLDER, DOWNLOAD_FOLDER
 from server_utils.image_processing import faceRecognition
@@ -22,16 +22,17 @@ def get_path(filename, upload=True):
 
 def upload_file(file, filename):
     file.save(get_path(filename))
+    print(get_path(filename))
 
 
 def proccess_file_face(filename):
-    copyfile(get_path(filename), get_path(filename, False))
+    shutil.copyfile(get_path(filename), get_path(filename, False))
     faceRecognition.rectangles(get_path(filename, False))
     os.remove(get_path(filename))
 
     
 def proccess_file_disguise(filename, style="regular"):
-    copyfile(get_path(filename), get_path(filename, False))
+    shutil.copyfile(get_path(filename), get_path(filename, False))
     faceRecognition.glasses_stache(get_path(filename, False), style)
     os.remove(get_path(filename))
 
@@ -41,15 +42,19 @@ def download_file(filename):
 
 
 def init_folders():
-    if not os.path.exists(UPLOAD_FOLDER):
-        os.makedirs(UPLOAD_FOLDER)
-    if not os.path.exists(DOWNLOAD_FOLDER):
-        os.makedirs(DOWNLOAD_FOLDER)
+    if os.path.exists(UPLOAD_FOLDER):
+        shutil.rmtree(UPLOAD_FOLDER)
+    os.makedirs(UPLOAD_FOLDER)
+    if os.path.exists(DOWNLOAD_FOLDER):
+        shutil.rmtree(DOWNLOAD_FOLDER)
+    os.makedirs(DOWNLOAD_FOLDER)
 
 
 def delete_old_files():
     now = time.time()
+    print(now)
     for file in os.listdir(DOWNLOAD_FOLDER):
         full_path = get_path(file, False)
+        print(full_path)
         if now - os.path.getmtime(full_path) >= 300:
             os.remove(full_path)

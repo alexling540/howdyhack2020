@@ -21,7 +21,7 @@ def index():
 def about():
     return render_template('index.html')
 
-@app.route("/face_rec", methods=["POST"])
+@app.route("/face_rec", methods=["GET", "POST"])
 def face_rec():
     if request.method == "POST":
         if "file" not in request.files:
@@ -87,6 +87,6 @@ if __name__ == "__main__":
     init_folders()
     app.run()
     scheduler = BackgroundScheduler()
-    scheduler.add_job(func=delete_old_files, trigger="interval", seconds=300)
     scheduler.start()
+    scheduler.add_job(func=delete_old_files, trigger="interval", seconds=5)
     atexit.register(lambda: scheduler.shutdown())
