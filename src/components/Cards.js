@@ -11,8 +11,8 @@ function Cards() {
           <ul className='cards__items'>
             <CardItem
               src='images/img-9.jpg'
-              text='Use image detection to comb the internet for a match of a person'
-              label='Find a Certain Person'
+              text='Identify suspicious individuals'
+              label='Facial Recognition'
               path='/face_rec'
             />
             <CardItem

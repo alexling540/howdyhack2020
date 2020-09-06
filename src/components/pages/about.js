@@ -24,7 +24,7 @@ export default function About() {
                 src='images/dan.jpg'
                 text='Daniel Chamorro'
                 label='Front-End'
-                path='/'
+                path='../https://www.linkedin.com/in/daniel-chamorro-847618199/'
               />
               <CardItem
                 src='images/bryce.jpg'
@@ -33,7 +33,7 @@ export default function About() {
                 path='/services'
               />
               <CardItem
-                src='images/img-9.jpg'
+                src='images/alex.png'
                 text='Alex Ling' 
                 label='Back-end'
                 path='/products'
