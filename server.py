@@ -4,7 +4,7 @@ import atexit
 from flask import Flask, request, redirect, render_template, send_from_directory
 from apscheduler.schedulers.background import BackgroundScheduler
 from werkzeug.utils import secure_filename
-from server_utils.file_helper import init_folders, is_valid_file, upload_file, proccess_file, download_file, delete_old_files
+from server_utils.file_helper import init_folders, is_valid_file, upload_file, proccess_file_face, proccess_file_disguise, download_file, delete_old_files
 
 app = Flask(__name__,
     template_folder='build',
@@ -32,7 +32,7 @@ def face_rec():
         if file and is_valid_file(filename):
             filename = secure_filename(filename)
             upload_file(file, filename)
-            proccess_file(filename, rectangles=True)
+            proccess_file_face(filename)
             return download_file(filename)
             
     return render_template('index.html')
@@ -52,7 +52,7 @@ def diguise():
         if file and is_valid_file(filename):
             filename = secure_filename(filename)
             upload_file(file, filename)
-            proccess_file(filename, rectangles=False)
+            proccess_file_disguise(filename, style="regular")
             return download_file(filename)
             
     return render_template('index.html')

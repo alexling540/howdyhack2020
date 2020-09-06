@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-from server_utils.image_utils import CFEVideoConf, image_resize
+from .image_utils import CFEVideoConf, image_resize
 
 cap = cv2.VideoCapture(0)
 
@@ -9,11 +9,11 @@ save_path           = 'saved-media/glasses_and_stash.mp4'
 frames_per_seconds  = 15
 config              = CFEVideoConf(cap, filepath=save_path, res='720p')
 out                 = cv2.VideoWriter(save_path, config.video_type, frames_per_seconds, config.dims)
-face_cascade = cv2.CascadeClassifier('./server_utils/data//haarcascade_frontalface_default.xml')
-eyes_cascade = cv2.CascadeClassifier('./server_utils/data//frontalEyes35x16.xml')
-nose_cascade = cv2.CascadeClassifier('./server_utils/data//Nose18x15.xml')
-glasses             = cv2.imread("./server_utils/images/glasses2.png", -1)
-mustache            = cv2.imread('./server_utils/images/mustache.png', -1)
+face_cascade = cv2.CascadeClassifier('./data/haarcascade_frontalface_default.xml')
+eyes_cascade = cv2.CascadeClassifier('./data/frontalEyes35x16.xml')
+nose_cascade = cv2.CascadeClassifier('./data/Nose18x15.xml')
+glasses             = cv2.imread("./images/glasses2.png", -1)
+mustache            = cv2.imread('./images/mustache.png', -1)
 
 '''
 OpenCV & Python Tutorial Video Series: https://kirr.co/ijcr59

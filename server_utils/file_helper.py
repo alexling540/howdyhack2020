@@ -4,7 +4,7 @@ import time
 from shutil import copyfile
 from flask import send_from_directory
 from server_config import UPLOAD_FOLDER, DOWNLOAD_FOLDER
-from server_utils.faceRecognition import glasses_stache
+from server_utils.image_processing import faceRecognition
 
 # Helper Functions
 file_pattern = re.compile("^[\w\-. ]+.(png|jpe?g|tiff)$", re.IGNORECASE)
@@ -24,9 +24,15 @@ def upload_file(file, filename):
     file.save(get_path(filename))
 
 
-def proccess_file(filename, rectangles=True):
+def proccess_file_face(filename):
     copyfile(get_path(filename), get_path(filename, False))
-    glasses_stache(get_path(filename, False), rectangles)
+    faceRecognition.rectangles(get_path(filename, False))
+    os.remove(get_path(filename))
+
+    
+def proccess_file_disguise(filename, style="regular"):
+    copyfile(get_path(filename), get_path(filename, False))
+    faceRecognition.glasses_stache(get_path(filename, False), style)
     os.remove(get_path(filename))
 
 
