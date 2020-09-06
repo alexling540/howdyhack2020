@@ -6,13 +6,13 @@ from utils import CFEVideoConf, image_resize
 cap = cv2.VideoCapture(0)
 
 save_path           = 'saved-media/glasses_and_stash.mp4'
-frames_per_seconds  = 10
+frames_per_seconds  = 15
 config              = CFEVideoConf(cap, filepath=save_path, res='720p')
 out                 = cv2.VideoWriter(save_path, config.video_type, frames_per_seconds, config.dims)
-face_cascade        = cv2.CascadeClassifier('cascades/data/haarcascade_frontalface_default.xml')
-eyes_cascade        = cv2.CascadeClassifier('cascades/third-party/frontalEyes35x16.xml')
-nose_cascade        = cv2.CascadeClassifier('cascades/third-party/Nose18x15.xml')
-glasses             = cv2.imread("images/glasses.png", -1)
+face_cascade = cv2.CascadeClassifier('venv/Lib/site-packages/cv2/data/haarcascade_frontalface_default.xml')
+eyes_cascade = cv2.CascadeClassifier('venv/Lib/site-packages/cv2/data/frontalEyes35x16.xml')
+nose_cascade = cv2.CascadeClassifier('venv/Lib/site-packages/cv2/data/Nose18x15.xml')
+glasses             = cv2.imread("images/glasses2.png", -1)
 mustache            = cv2.imread('images/mustache.png', -1)
 
 '''
