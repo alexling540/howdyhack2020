@@ -75,8 +75,9 @@ function Footer() {
 
             <a
               class='social-icon-link github'
-              to='https://github.com/alexling540/howdyhack2020'
+              href='https://github.com/alexling540/howdyhack2020'
               target='_blank'
+              rel='noopener'
               aria-label='Github'
             >
               <i class='fab fa-github' />
