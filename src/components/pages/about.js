@@ -24,25 +24,25 @@ export default function About() {
                 src='images/dan.jpg'
                 text='Daniel Chamorro'
                 label='Front-End'
-                path='../https://www.linkedin.com/in/daniel-chamorro-847618199/'
+                
               />
               <CardItem
                 src='images/bryce.jpg'
                 text='Bryce Bodner'
                 label='Python'
-                path='/services'
+                
               />
               <CardItem
                 src='images/alex.png'
                 text='Alex Ling' 
                 label='Back-end'
-                path='/products'
+                
               />
               <CardItem
                 src='images/apsara.jpg'
                 text='Apsara Mitra'
                 label='Front-end'
-                path='/sign-up'
+                
               />
             </ul>
           </div>
